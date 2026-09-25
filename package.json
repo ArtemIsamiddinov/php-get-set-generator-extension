@@ -12,10 +12,47 @@
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
+    "submenus": [
+      {
+        "id": "php-get-set-generator.actions",
+        "label": "PHP Getters and Setters"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "editorLangId == 'php'",
+          "submenu": "php-get-set-generator.actions",
+          "group": "navigation"
+        }
+      ],
+      "php-get-set-generator.actions": [
+        {
+          "command": "php-get-set-generator.makeGetters",
+          "group": "navigation@1"
+        },
+        {
+          "command": "php-get-set-generator.makeSetters",
+          "group": "navigation@2"
+        },
+        {
+          "command": "php-get-set-generator.makeGettersAndSetters",
+          "group": "navigation@3"
+        }
+      ]
+    },
     "commands": [
       {
-        "command": "php-get-set-generator.helloWorld",
-        "title": "Hello World"
+        "command": "php-get-set-generator.makeGetters",
+        "title": "Make Getters"
+      },
+      {
+        "command": "php-get-set-generator.makeSetters",
+        "title": "Make Setters"
+      },
+      {
+        "command": "php-get-set-generator.makeGettersAndSetters",
+        "title": "Make Getters & Setters"
       }
     ]
   },

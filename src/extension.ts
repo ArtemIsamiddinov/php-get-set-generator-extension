@@ -1,26 +1,38 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
+import { DocumentParseService } from './service/documentparseservice';
 
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "php-get-set-generator" is now active!');
+	const makeGettersDisposable = vscode.commands.registerCommand('php-get-set-generator.makeGetters', () => {
+		const editor = vscode.window.activeTextEditor;
+		if (editor) {
+			const parser = new DocumentParseService(editor.document);
+			const phpClasses = parser.parse();
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	const disposable = vscode.commands.registerCommand('php-get-set-generator.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from php-get-set-generator!');
+			console.log(phpClasses);
+		}
+		else {
+			vscode.window.showErrorMessage("Could not determine the current editor");
+		}
 	});
+	// const disposable = vscode.commands.registerCommand('php-get-set-generator.helloWorld', () => {
+	// 	vscode.window.showInformationMessage('Hello World from php-get-set-generator!');
+	// });
 
-	context.subscriptions.push(disposable);
+	// const versionDisposable = vscode.commands.registerCommand('php-get-set-generator.version', () => {
+	// 	try {
+	// 		let version = vscode.extensions.getExtension('demai.php-get-set-generator')?.packageJSON?.version;
+	// 		if (version === undefined || version === null || version === '') {
+	// 			throw new Error('Version information is empty');
+	// 		}
+	// 		vscode.window.showInformationMessage(`php-get-set-generator version: ${version}`);
+	// 	} catch (error) {
+	// 		vscode.window.showErrorMessage(`Error: ${error}`);
+	// 	}
+	// });
+
+	// context.subscriptions.push(disposable);
+	// context.subscriptions.push(versionDisposable);
 }
 
-// This method is called when your extension is deactivated
 export function deactivate() {}
