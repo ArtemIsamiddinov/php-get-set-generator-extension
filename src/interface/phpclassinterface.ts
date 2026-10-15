@@ -2,8 +2,9 @@ import { PhpClassType } from "../enums/phpclasstype";
 import { Position } from "vscode";
 import { PhpMethodInterface } from "./phpmethodinterface";
 import { PhpPropertyInterface } from "./phppropertyinterface";
+import { Positionable } from "./positionable";
 
-export interface PhpClassInterface
+export interface PhpClassInterface extends Positionable
 {
     setName(name: string): PhpClassInterface;
 
@@ -28,10 +29,6 @@ export interface PhpClassInterface
     isReadonly(): boolean;
 
     getType(): PhpClassType;
-
-    getPositionFrom(): Position;
-
-    getPositionTo(): Position;
 
     getMethods(): Map<string, PhpMethodInterface>;
 

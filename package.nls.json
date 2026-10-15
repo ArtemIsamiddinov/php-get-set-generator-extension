@@ -1,0 +1,6 @@
+{
+  "config.fluentSetters.description": "If enabled, setters will return `$this` for chained calls (`public function setProp(): self`).",
+  "config.getterPrefix.description": "Prefix for getter methods of non-boolean properties (example: *get*Name).",
+  "config.getterBoolPrefix.description": "Prefix for getter methods of boolean properties (example: *is*Active).",
+  "config.addVoidToSetters.description": "Whether to add the `: void` return type for standard setters (ignored if fluent style is enabled)."
+}

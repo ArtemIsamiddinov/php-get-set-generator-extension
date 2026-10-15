@@ -1,7 +1,8 @@
 import { Visibility } from "../enums/visibility";
 import { Position } from "vscode";
+import { Positionable } from "./positionable";
 
-export interface PhpMethodInterface
+export interface PhpMethodInterface extends Positionable
 {
     getName(): string;
 
@@ -23,11 +24,7 @@ export interface PhpMethodInterface
 
     setStatic(isStatic: boolean): PhpMethodInterface;
 
-    getPositionFrom(): Position;
-
     setPositionFrom(position: Position): PhpMethodInterface;
-
-    getPositionTo(): Position;
 
     setPositionTo(position: Position): PhpMethodInterface;
 }

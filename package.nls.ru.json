@@ -1,0 +1,6 @@
+{
+  "config.fluentSetters.description": "Если включено, сеттеры будут возвращать `$this` для цепочки вызовов (`public function setProp(): self`).",
+  "config.getterPrefix.description": "Префик для геттеров не булевых свойств (Пример: *get*Name).",
+  "config.getterBoolPrefix.description": "Префикс для геттеров булевых свойств (Пример: *is*Active).",
+  "config.addVoidToSetters.description": "Добавлять ли `: void` возвращаемый тип для сеттеров (Игнорируется если включен `Fluent Setters`)."
+}

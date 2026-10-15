@@ -12,6 +12,46 @@
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
+    "configuration": {
+      "title": "PHP Getters & Setters Generator",
+      "properties": {
+        "php-get-set-generator.indentation": {
+          "type": "string",
+          "default": "4 spaces",
+          "enum": [
+            "2 spaces",
+            "4 spaces",
+            "1 tab"
+          ],
+          "enumDescriptions": [
+            "Use 2 spaces for method indentation.",
+            "Use 4 spaces for method indentation (PSR standard).",
+            "Use 1 tab for method indentation."
+          ],
+          "markdownDescription": "Choose the indentation style for generated getters and setters."
+        },
+        "php-get-set-generator.fluentSetters": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "%config.fluentSetters.description%"
+        },
+        "php-get-set-generator.getterPrefix": {
+          "type": "string",
+          "default": "get",
+          "markdownDescription": "%config.getterPrefix.description%"
+        },
+        "php-get-set-generator.getterBoolPrefix": {
+          "type": "string",
+          "default": "is",
+          "markdownDescription": "%config.getterBoolPrefix.description%"
+        },
+        "php-get-set-generator.addVoidToSetters": {
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "%config.addVoidToSetters.description%"
+        }
+      }
+    },
     "submenus": [
       {
         "id": "php-get-set-generator.actions",
@@ -21,7 +61,7 @@
     "menus": {
       "editor/context": [
         {
-          "when": "editorLangId == 'php'",
+          "when": "editorLangId == 'php' || editorLangId == 'php' && editorHasMultipleSelections",
           "submenu": "php-get-set-generator.actions",
           "group": "navigation"
         }
@@ -29,15 +69,15 @@
       "php-get-set-generator.actions": [
         {
           "command": "php-get-set-generator.makeGetters",
-          "group": "navigation@1"
+          "group": "navigation1@1"
         },
         {
           "command": "php-get-set-generator.makeSetters",
-          "group": "navigation@2"
+          "group": "navigation1@2"
         },
         {
           "command": "php-get-set-generator.makeGettersAndSetters",
-          "group": "navigation@3"
+          "group": "navigation1@3"
         }
       ]
     },

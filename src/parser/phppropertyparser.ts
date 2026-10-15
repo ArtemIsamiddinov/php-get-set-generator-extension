@@ -45,7 +45,7 @@ export class PhpPropertyParser implements PhpPropertyParserInterface {
 
         const regexp: RegExp = new RegExp(
             '(?<beginning>var|public|protected|private|readonly|static|final)' +
-            '[\\s\\S]*?\\$(?<name>[a-zA-Z0-9_\\-]+)[\\s\\S]*?;',
+            '[a-zA-Z\\s_\\\\0-9\\|\\?]*?\\$(?<name>[a-zA-Z0-9_\\-]+)[\\s\\S]*?;',
             'gd'
         );
         const phpMethods: Array<PhpMethodInterface> = [...phpClass.getMethods().values()];
@@ -71,11 +71,11 @@ export class PhpPropertyParser implements PhpPropertyParserInterface {
 
             let propMatch = match[0].replace(/\$[a-zA-Z-_0-9]+[\S\s]*?;$/, '');
 
-            this.#solveStatic(propMatch, phpProperty);
-            this.#solveReadonly(propMatch, phpProperty);
-            this.#solveFinal(propMatch, phpProperty);
-            this.#solveVisibility(propMatch, phpProperty);
-            this.#solveTypes(propMatch, phpProperty);
+            propMatch = this.#solveStatic(propMatch, phpProperty);
+            propMatch = this.#solveReadonly(propMatch, phpProperty);
+            propMatch = this.#solveFinal(propMatch, phpProperty);
+            propMatch = this.#solveVisibility(propMatch, phpProperty);
+            propMatch = this.#solveTypes(propMatch, phpProperty);
 
             phpProperties.push(phpProperty);
         }
@@ -94,37 +94,41 @@ export class PhpPropertyParser implements PhpPropertyParserInterface {
         ).length > 0;
     }
 
-    #solveStatic(propMatch: string, phpProperty: PhpPropertyInterface) {
+    #solveStatic(propMatch: string, phpProperty: PhpPropertyInterface): string {
         if (/readonly\s/.exec(propMatch)) {
             phpProperty.setReadonly(true);
             propMatch = propMatch.replace(/readonly\s/, '');
         }
+        return propMatch;
     }
 
-    #solveReadonly(propMatch: string, phpProperty: PhpPropertyInterface) {
+    #solveReadonly(propMatch: string, phpProperty: PhpPropertyInterface): string {
         if (/static\s/.exec(propMatch)) {
             phpProperty.setStatic(true);
             propMatch = propMatch.replace(/static\s/, '');
         }
+        return propMatch;
     }
 
-    #solveFinal(propMatch: string, phpProperty: PhpPropertyInterface) {
+    #solveFinal(propMatch: string, phpProperty: PhpPropertyInterface): string {
         if (/final\s/.exec(propMatch)) {
             phpProperty.setFinal(true);
             propMatch = propMatch.replace(/final\s/, '');
         }
+        return propMatch;
     }
 
-    #solveVisibility(propMatch: string, phpProperty: PhpPropertyInterface) {
+    #solveVisibility(propMatch: string, phpProperty: PhpPropertyInterface): string {
         let visibilityMatch;
         if ((visibilityMatch = /(?<visibility>public|protected|private)\s/.exec(propMatch))) {
             const visibiliy: Visibility = visibilityMatch?.groups?.['visibility']! as Visibility;
             phpProperty.setVisibility(visibiliy);
             propMatch = propMatch.replace(new RegExp(visibiliy + '\\s', 'g'), '');
         }
+        return propMatch;
     }
 
-    #solveTypes(propMatch: string, phpProperty: PhpPropertyInterface) {
+    #solveTypes(propMatch: string, phpProperty: PhpPropertyInterface): string {
         let types: Array<string> = propMatch.trim() !== 'var' ? propMatch.trim().split('|') : [];
         if (types.length > 0) {
             const cleanTypes: string[] = types.reduce((acc: string[], type: string) => {
@@ -138,6 +142,7 @@ export class PhpPropertyParser implements PhpPropertyParserInterface {
 
             phpProperty.setTypes(cleanTypes);
         }
+        return propMatch;
     }
 
     #findInConstructor(phpClass: PhpClassInterface): PhpPropertyInterface[] {

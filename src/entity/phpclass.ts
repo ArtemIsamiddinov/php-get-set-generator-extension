@@ -10,14 +10,15 @@ export class PhpClass implements PhpClassInterface {
     #abstract: boolean = false;
     #final: boolean = false;
     #readonly: boolean = false;
-    #type: PhpClassType = PhpClassType.class;
+    #type: PhpClassType;
     #positionFrom: Position;
     #positionTo: Position;
     #methods: Map<string, PhpMethodInterface> = new Map();
     #properties: Map<string, PhpPropertyInterface> = new Map();
 
-    constructor(name: string)
+    constructor(name: string, type: PhpClassType = PhpClassType.class)
     {
+        this.#type = type;
         this.#name = name;
         this.#positionFrom = new NullPosition;
         this.#positionTo = new NullPosition;

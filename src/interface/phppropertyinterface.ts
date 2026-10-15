@@ -1,8 +1,8 @@
-import { PhpType } from "../enums/phptype";
 import { Visibility } from "../enums/visibility";
 import { Position } from "vscode";
+import { Positionable } from "./positionable";
 
-export interface PhpPropertyInterface
+export interface PhpPropertyInterface extends Positionable
 {
     getName(): string;
 
@@ -28,11 +28,7 @@ export interface PhpPropertyInterface
 
     setVisibility(visibility: Visibility): PhpPropertyInterface;
 
-    getPositionFrom(): Position;
-
     setPositionFrom(position: Position): PhpPropertyInterface;
-
-    getPositionTo(): Position;
 
     setPositionTo(position: Position): PhpPropertyInterface;
 

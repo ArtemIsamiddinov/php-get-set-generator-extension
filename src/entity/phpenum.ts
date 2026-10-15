@@ -3,22 +3,22 @@ import { PhpEnumType } from "../enums/phpenumtype";
 import { PhpClassInterface } from "../interface/phpclassinterface";
 import { PhpClass } from "./phpclass";
 
-export class PhpEnum extends PhpClass
-{
-    #type: PhpClassType = PhpClassType.enum;
+export class PhpEnum extends PhpClass {
     #enumType: PhpEnumType = PhpEnumType.default;
+
+    constructor(name: string) {
+        super(name, PhpClassType.enum);
+    }
 
     setType(type: PhpClassType): PhpClassInterface {
         return this;
     }
 
-    getEnumType(): PhpEnumType
-    {
+    getEnumType(): PhpEnumType {
         return this.#enumType;
     }
 
-    setEnumType(type: PhpEnumType): PhpEnum
-    {
+    setEnumType(type: PhpEnumType): PhpEnum {
         this.#enumType = type;
         return this;
     }
