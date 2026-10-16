@@ -6,6 +6,7 @@ export class Config {
     #getterPrefix: string;
     #getterBoolPrefix: string;
     #addVoidToSetters: boolean;
+    #fluentSettersReturnType: string;
 
     constructor() {
         const config = workspace.getConfiguration('php-get-set-generator');
@@ -15,6 +16,7 @@ export class Config {
         this.#getterPrefix = config.get<string>('getterPrefix', 'get');
         this.#getterBoolPrefix = config.get<string>('getterBoolPrefix', 'is');
         this.#addVoidToSetters = config.get<boolean>('addVoidToSetters', false);
+        this.#fluentSettersReturnType = config.get<string>('fluentSettersReturnType', 'Class name');
     }
 
     getIndentation(): string {
@@ -23,6 +25,10 @@ export class Config {
 
     isFluentSetters(): boolean {
         return this.#fluentSetters;
+    }
+
+    getFluentSettersReturnType(): string {
+        return this.#fluentSettersReturnType;
     }
 
     getGetterPrefix(): string {

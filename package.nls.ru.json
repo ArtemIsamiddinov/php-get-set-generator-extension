@@ -2,5 +2,14 @@
   "config.fluentSetters.description": "Если включено, сеттеры будут возвращать `$this` для цепочки вызовов (`public function setProp(): self`).",
   "config.getterPrefix.description": "Префик для геттеров не булевых свойств (Пример: *get*Name).",
   "config.getterBoolPrefix.description": "Префикс для геттеров булевых свойств (Пример: *is*Active).",
-  "config.addVoidToSetters.description": "Добавлять ли `: void` возвращаемый тип для сеттеров (Игнорируется если включен `Fluent Setters`)."
+  "config.addVoidToSetters.description": "Добавлять ли `: void` возвращаемый тип для сеттеров (Игнорируется если включен `Fluent Setters`).",
+
+  "config.fluentSettersReturnType.description": "Возвращаемый тип данных для сгенерированного сеттера.",
+  "config.fluentSettersReturnType.enum1description": "Возвращаемый тип сеттера будет равен имени класса (`pubilc function setProp($val): ClassName`).",
+  "config.fluentSettersReturnType.enum2description": "Возвращаемый тип сеттара будет равен static (`pubilc function setProp($val): static`).",
+
+  "config.indentation.description": "Стиль отступа для сгенерированных геттеров и сеттеров.",
+  "config.indentation.enum1description": "Используется `2 пробела` для отступов методов.",
+  "config.indentation.enum2description": "Используется `4 пробела` для отступов методов (`PSR-12` standard).",
+  "config.indentation.enum3description": "Используется `1 таб` для отступов методов."
 }

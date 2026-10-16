@@ -73,7 +73,6 @@ export class PhpPropertyParser implements PhpPropertyParserInterface {
 
             propMatch = this.#solveStatic(propMatch, phpProperty);
             propMatch = this.#solveReadonly(propMatch, phpProperty);
-            propMatch = this.#solveFinal(propMatch, phpProperty);
             propMatch = this.#solveVisibility(propMatch, phpProperty);
             propMatch = this.#solveTypes(propMatch, phpProperty);
 
@@ -106,14 +105,6 @@ export class PhpPropertyParser implements PhpPropertyParserInterface {
         if (/static\s/.exec(propMatch)) {
             phpProperty.setStatic(true);
             propMatch = propMatch.replace(/static\s/, '');
-        }
-        return propMatch;
-    }
-
-    #solveFinal(propMatch: string, phpProperty: PhpPropertyInterface): string {
-        if (/final\s/.exec(propMatch)) {
-            phpProperty.setFinal(true);
-            propMatch = propMatch.replace(/final\s/, '');
         }
         return propMatch;
     }

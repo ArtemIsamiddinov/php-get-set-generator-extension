@@ -23,12 +23,25 @@
             "4 spaces",
             "1 tab"
           ],
-          "enumDescriptions": [
-            "Use 2 spaces for method indentation.",
-            "Use 4 spaces for method indentation (PSR standard).",
-            "Use 1 tab for method indentation."
+          "markdownEnumDescriptions": [
+            "%config.indentation.enum1description%",
+            "%config.indentation.enum2description%",
+            "%config.indentation.enum3description%"
           ],
-          "markdownDescription": "Choose the indentation style for generated getters and setters."
+          "markdownDescription": "%config.indentation.description%"
+        },
+        "php-get-set-generator.fluentSettersReturnType": {
+          "type": "string",
+          "default": "Class name",
+          "enum": [
+            "Class name",
+            "static"
+          ],
+          "markdownEnumDescriptions": [
+            "%config.fluentSettersReturnType.enum1description%",
+            "%config.fluentSettersReturnType.enum2description%"
+          ],
+          "markdownDescription": "%config.fluentSettersReturnType.description%"
         },
         "php-get-set-generator.fluentSetters": {
           "type": "boolean",

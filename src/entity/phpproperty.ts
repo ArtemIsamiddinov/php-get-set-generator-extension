@@ -2,14 +2,12 @@ import { Visibility } from "../enums/visibility";
 import { PhpPropertyInterface } from "../interface/phppropertyinterface";
 import { Position } from "vscode";
 import { NullPosition } from "../nullobject/nullposition";
-import { PhpType } from "../enums/phptype";
 
 export class PhpProperty implements PhpPropertyInterface {
     #name: string;
     #abstract: boolean = false;
     #static: boolean = false;
     #readonly: boolean = false;
-    #final: boolean = false;
     #visibility: Visibility = Visibility.public;
     #positionFrom: Position;
     #positionTo: Position = new NullPosition;
@@ -53,15 +51,6 @@ export class PhpProperty implements PhpPropertyInterface {
 
     setReadonly(isReadonly: boolean): PhpPropertyInterface {
         this.#readonly = isReadonly;
-        return this;
-    }
-
-    isFinal(): boolean {
-        return this.#final;
-    }
-
-    setFinal(isFinal: boolean): PhpPropertyInterface {
-        this.#final = isFinal;
         return this;
     }
 

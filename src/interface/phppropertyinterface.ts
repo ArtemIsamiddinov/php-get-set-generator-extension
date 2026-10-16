@@ -19,11 +19,7 @@ export interface PhpPropertyInterface extends Positionable
     isReadonly(): boolean;
 
     setReadonly(isReadonly: boolean): PhpPropertyInterface;
-
-    isFinal(): boolean;
-
-    setFinal(isFinal: boolean): PhpPropertyInterface;
-
+    
     getVisibility(): Visibility;
 
     setVisibility(visibility: Visibility): PhpPropertyInterface;

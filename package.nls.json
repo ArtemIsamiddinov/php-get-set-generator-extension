@@ -2,5 +2,15 @@
   "config.fluentSetters.description": "If enabled, setters will return `$this` for chained calls (`public function setProp(): self`).",
   "config.getterPrefix.description": "Prefix for getter methods of non-boolean properties (example: *get*Name).",
   "config.getterBoolPrefix.description": "Prefix for getter methods of boolean properties (example: *is*Active).",
-  "config.addVoidToSetters.description": "Whether to add the `: void` return type for standard setters (ignored if fluent style is enabled)."
+  "config.addVoidToSetters.description": "Whether to add the `: void` return type for standard setters (ignored if fluent style is enabled).",
+
+  "config.fluentSettersReturnType.description": "Choose the return type for generated setters.",
+  "config.fluentSettersReturnType.enum1description": "Setter return type will be class name (`pubilc function setProp($val): ClassName`).",
+  "config.fluentSettersReturnType.enum2description": "Setter return type will be static (`pubilc function setProp($val): static`).",
+
+  "config.indentation.description": "Choose the indentation style for generated getters and setters.",
+  "config.indentation.enum1description": "Use `2 spaces` for method indentation.",
+  "config.indentation.enum2description": "Use `4 spaces` for method indentation (`PSR` standard).",
+  "config.indentation.enum3description": "Use `1 tab` for method indentation."
+  
 }
