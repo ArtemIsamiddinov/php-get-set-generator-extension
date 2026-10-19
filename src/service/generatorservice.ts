@@ -42,7 +42,7 @@ export class GeneratorService {
         const phpClassType: string = phpClass.getType();
         const gettersName = gettersCount === 1 ? 'getter' : 'getters';
         this.#insertCode(
-            phpClass.getPositionTo().with(), 
+            phpClass.getPositionTo(), 
             '\n' + getters.join('\n\n') + '\n', 
             `Generated ${gettersCount} ${gettersName} for ${phpClassType} ${className}!`, 
             `Could not generate getters for ${phpClassType} ${className}`

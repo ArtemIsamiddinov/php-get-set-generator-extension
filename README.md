@@ -1,71 +1,56 @@
-# php-get-set-generator README
+# PHP Getters & Setters Generator
 
-This is the README for your extension "php-get-set-generator". After writing up a brief description, we recommend including the following sections.
+A smart, high-speed, and automated PHP getters and setters generator for Visual Studio Code. It fully understands modern **PHP 8.x+** features and respects your code geometry (selections, multi-cursors) without breaking your workflow.
 
-## Features
+### Make getters inside readonly class:
+![PHP Get Set Extension Demo](images/make_getter.gif)
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+### Make all getters inside readonly class:
+![PHP Get Set Extension Demo](images/make_all_getters_readonly.gif)
 
-For example if there is an image subfolder under your extension project workspace:
+### Make getters and setters:
+![PHP Get Set Extension Demo](images/make_getter_setter.gif)
 
-\!\[feature X\]\(images/feature-x.png\)
+### Make getters and setters for properties from constructor:
+![PHP Get Set Extension Demo](images/make_getter_setter_construct.gif)
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+### Make all getters and setters for class:
+![PHP Get Set Extension Demo](images/make_all_get_set.gif)
 
-## Requirements
+## ✨ Features
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+- **Multi-Cursor Support (`Alt` + Click):** Select multiple properties at once, right-click, and generate all methods instantly.
+- **Define in Constructor:** Select property declared inside class constructor method.
+- **Smart Target Detection:** If no text is selected, it automatically detects the PHP property directly under your caret/cursor.
+- **Whole Class Generation:** Click anywhere on an empty space inside a class, and it will generate methods for all properties at once.
+- **PHP 8.2+ Readonly Class Support:** Automatically detects `readonly class` or `readonly` properties and generates **only getters** for them, protecting your code from runtime crash errors.
+- **PHP 8.x+ Static Properties Support:** Smart generation for static properties (using `static::$prop` and returning `static` instead of `$this`).
+- **Atomic Undo (`Ctrl + Z`):** All generated code across multiple classes is inserted in a single transaction. You can undo the entire generation with just one keystroke.
 
-## Extension Settings
+## ⚙️ Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+This extension contributes the following settings through the configuration panel (`Ctrl + ,`):
 
-For example:
+- `php-get-set-generator.indentation`: Choose your preferred code style layout (`2 spaces`, `4 spaces` (PSR standard), or `2 tabs`).
+- `php-get-set-generator.fluentSetters`: If enabled, non-static setters will return `$this` for chained method calls (`$user->setName()->setAge()`).
+- `php-get-set-generator.fluentSettersReturnType`: Choose what fluent setters should return as a type-hint: `static` or the actual `Class name`.
+- `php-get-set-generator.getterPrefix`: Prefix for common property getter methods (e.g., `get`Name).
+- `php-get-set-generator.getterBoolPrefix`: Prefix for boolean property getter methods (e.g., `is`Active).
+- `php-get-set-generator.addVoidToSetters`: Whether to add the `: void` return type-hint for non-fluent standard setters.
 
-This extension contributes the following settings:
+## 🚀 How to Use
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+1. Open any PHP file.
+2. Put your cursor on a property name (or select multiple properties using `Alt`).
+3. Right-click anywhere in the editor and choose **PHP Getters and Setters** from the context menu.
+4. Select one of the actions:
+   - `Make Getters & Setters` (Generates both)
+   - `Individual Methods...` ➡️ `Make Getter` / `Make Setter`
 
-## Known Issues
+## 📋 Requirements
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+No external dependencies or PHP runtime required. The extension uses a lightning-fast native internal parser.
 
-## Release Notes
+## 📄 License
 
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+This project is licensed under the **MIT License**.
