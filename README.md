@@ -54,3 +54,12 @@ No external dependencies or PHP runtime required. The extension uses a lightning
 ## 📄 License
 
 This project is licensed under the **MIT License**.
+
+## 🤝 Contact with me
+
+I would be glad to hear your ideas, suggestions, and bug reports! 
+
+| Contact Method | Link / Address |
+| :--- | :--- |
+| 📧 **Email** | [artemisamiddinov@gmail.com](mailto:artemisamiddinov@gmail.com) |
+| 💬 **Telegram** | [@artemisamiddinov](https://t.me/artemisamiddinov) |
