@@ -60,6 +60,12 @@ export function activate(context: vscode.ExtensionContext) {
 			vscode.window.showErrorMessage("Could not determine the current editor");
 		}
 	});
+
+	context.subscriptions.push(
+		makeGettersDisposable,
+		makeSettersDisposable,
+		makeGettersAndSettersDisposable
+	);
 }
 
 export function deactivate() { }

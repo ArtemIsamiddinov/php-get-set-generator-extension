@@ -2,7 +2,7 @@
   "name": "php-get-set-generator",
   "displayName": "PHP Getters & Setters Generator",
   "description": "Smart and automated PHP getters and setters generator with full support for PHP 8.x properties, statics, and readonly classes.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "license": "MIT",
   "publisher": "artem-isamiddinov",
   "icon": "images/icon.png",
@@ -28,10 +28,7 @@
     "oop"
   ],
   "activationEvents": [
-    "onLanguage:php",
-    "onCommand:php-get-set-generator.makeGetters",
-    "onCommand:php-get-set-generator.makeSetters",
-    "onCommand:php-get-set-generator.makeGettersAndSetters"
+    "onLanguage:php"
   ],
   "main": "./dist/extension.js",
   "contributes": {
