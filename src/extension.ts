@@ -4,6 +4,7 @@ import { SelectionService } from './service/selectionservice';
 import { GeneratorService } from './service/generatorservice';
 import { Config } from './entity/config';
 import { PhpPropertiesSelection } from './entity/phpproperiesselection';
+import { window } from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
 
@@ -15,9 +16,9 @@ export function activate(context: vscode.ExtensionContext) {
 			const selectionService = new SelectionService(editor, phpClasses);
 			const generatorService = new GeneratorService(editor.document, new Config);
 
-			selectionService.getSelections().forEach((phpPropertiesSelection: PhpPropertiesSelection) => {
-				generatorService.makeGetters(phpPropertiesSelection);
-			});
+			for (const phpPropertiesSelection of selectionService.getSelections().values()) {
+				await generatorService.makeGetters(phpPropertiesSelection);
+			}
 
 		}
 		else {
@@ -33,9 +34,9 @@ export function activate(context: vscode.ExtensionContext) {
 			const selectionService = new SelectionService(editor, phpClasses);
 			const generatorService = new GeneratorService(editor.document, new Config);
 
-			selectionService.getSelections().forEach((phpPropertiesSelection: PhpPropertiesSelection) => {
-				generatorService.makeSetters(phpPropertiesSelection);
-			});
+			for (const phpPropertiesSelection of selectionService.getSelections().values()) {
+				await generatorService.makeSetters(phpPropertiesSelection);
+			}
 
 		}
 		else {
@@ -51,10 +52,9 @@ export function activate(context: vscode.ExtensionContext) {
 			const selectionService = new SelectionService(editor, phpClasses);
 			const generatorService = new GeneratorService(editor.document, new Config);
 
-			selectionService.getSelections().forEach((phpPropertiesSelection: PhpPropertiesSelection) => {
-				generatorService.makeGettersAndSetters(phpPropertiesSelection);
-			});
-
+			for (const phpPropertiesSelection of selectionService.getSelections().values()) {
+				await generatorService.makeGettersAndSetters(phpPropertiesSelection);
+			}
 		}
 		else {
 			vscode.window.showErrorMessage("Could not determine the current editor");

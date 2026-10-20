@@ -22,7 +22,7 @@ export class GeneratorService {
         return existsMethods;
     }
 
-    makeGetters(phpPropertiesSelection: PhpPropertiesSelection): void {
+    async makeGetters(phpPropertiesSelection: PhpPropertiesSelection): Promise<void> {
         let getters: Array<string> = [];
         let existsMethods = this.#getExistsMethods(phpPropertiesSelection.getClass());
 
@@ -41,7 +41,7 @@ export class GeneratorService {
         const className = phpClass.getName();
         const phpClassType: string = phpClass.getType();
         const gettersName = gettersCount === 1 ? 'getter' : 'getters';
-        this.#insertCode(
+        await this.#insertCode(
             phpClass.getPositionTo(), 
             '\n' + getters.join('\n\n') + '\n', 
             `Generated ${gettersCount} ${gettersName} for ${phpClassType} ${className}!`, 
@@ -49,7 +49,7 @@ export class GeneratorService {
         );
     }
 
-    makeSetters(phpPropertiesSelection: PhpPropertiesSelection): void {
+    async makeSetters(phpPropertiesSelection: PhpPropertiesSelection): Promise<void> {
         let setters: Array<string> = [];
         let existsMethods = this.#getExistsMethods(phpPropertiesSelection.getClass());
 
@@ -71,7 +71,7 @@ export class GeneratorService {
         const className = phpClass.getName();
         const phpClassType: string = phpClass.getType();
         const settersName = settersCount === 1 ? 'setter' : 'setters';
-        this.#insertCode(
+        await this.#insertCode(
             phpClass.getPositionTo().with(), 
             '\n' + setters.join('\n\n') + '\n', 
             `Generated ${settersCount} ${settersName} for ${phpClassType} ${className}!`, 
@@ -79,7 +79,7 @@ export class GeneratorService {
         );
     }
 
-    makeGettersAndSetters(phpPropertiesSelection: PhpPropertiesSelection): void {
+    async makeGettersAndSetters(phpPropertiesSelection: PhpPropertiesSelection): Promise<void> {
         let 
             gettersAndSetters: Array<string> = [],
             gettersCount: number = 0,
@@ -112,7 +112,7 @@ export class GeneratorService {
         const phpClassType: string = phpClass.getType();
         const gettersName = gettersCount === 1 ? 'getter' : 'getters';
         const settersName = settersCount === 1 ? 'setter' : 'setters';
-        this.#insertCode(
+        await this.#insertCode(
             phpClass.getPositionTo().with(), 
             '\n' + gettersAndSetters.join('\n\n') + '\n', 
             `Generated for ${phpClassType} ${className}: ${gettersCount} ${gettersName} and ${settersCount} ${settersName}`, 

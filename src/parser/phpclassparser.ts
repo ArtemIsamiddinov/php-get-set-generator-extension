@@ -59,7 +59,7 @@ export class PhpClassParser implements PhpClassParserInterface {
     #findPositionTo(): void {
         let phpClasses = this.#getSortedByPosition();
         const lastLine = this.#document.lineAt(this.#document.lineCount - 1);
-        const finalPosition = new Position(lastLine.text.length, lastLine.text.length);
+        const finalPosition = new Position(this.#document.lineCount - 1, lastLine.text.length);
 
         for (let i = 0; i < phpClasses.length; i++) {
             let current = phpClasses[i];

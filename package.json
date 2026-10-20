@@ -2,7 +2,7 @@
   "name": "php-get-set-generator",
   "displayName": "PHP Getters & Setters Generator",
   "description": "Smart and automated PHP getters and setters generator with full support for PHP 8.x properties, statics, and readonly classes.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "license": "MIT",
   "publisher": "artem-isamiddinov",
   "icon": "images/icon.png",
@@ -11,7 +11,7 @@
     "url": "https://github.com/ArtemIsamiddinov/php-get-set-generator-extension"
   },
   "engines": {
-    "vscode": "^1.136.0"
+    "vscode": "^1.90.0"
   },
   "categories": [
     "Programming Languages",
@@ -28,7 +28,10 @@
     "oop"
   ],
   "activationEvents": [
-    "onLanguage:php"
+    "onLanguage:php",
+    "onCommand:php-get-set-generator.makeGetters",
+    "onCommand:php-get-set-generator.makeSetters",
+    "onCommand:php-get-set-generator.makeGettersAndSetters"
   ],
   "main": "./dist/extension.js",
   "contributes": {
@@ -94,7 +97,7 @@
     "menus": {
       "editor/context": [
         {
-          "when": "editorLangId == 'php' || editorLangId == 'php' && editorHasMultipleSelections",
+          "when": "editorLangId == 'php'",
           "submenu": "php-get-set-generator.actions",
           "group": "navigation"
         }
@@ -144,7 +147,7 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.136.0",
+    "@types/vscode": "^1.90.0",
     "@types/mocha": "^10.0.10",
     "@types/node": "24.x",
     "typescript-eslint": "^8.61.1",
